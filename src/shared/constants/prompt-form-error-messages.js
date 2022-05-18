@@ -1,5 +1,5 @@
 export const promptFormErrorMessages = {
-  UNAUTHORIZED: 'Authorization failed. Please check you API key',
+  UNAUTHORIZED: 'Authorization failed. Please double check your OpenAI API key',
   BAD_REQUEST:
-    'This model\'s maximum context length is 2049 tokens. Please reduce your prompt'
+    'Your request is too long and requires more than 2049 tokens. Please reduce your prompt, or break it into two thoughts!'
 };
