@@ -20,7 +20,8 @@
     "build": "react-scripts build",
     "lint:js": "eslint src/**/*.{js,jsx} --fix",
     "lint:css": "stylelint **/*.module.css --fix",
-    "all": "react-scripts start & react-scripts build"
+    "go": "react-scripts start & react-scripts build", 
+    "full":"eslint src/**/*.{js,jsx} --fix && stylelint **/*.module.css --fix & react-scripts start & react-scripts build"
   },
   "browserslist": {
     "production": [
