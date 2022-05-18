@@ -3,6 +3,10 @@
 an app that sends plain text prompts to the
 [OpenAI API](https://openai.com/api/) and displays the results in a list
 
+## Extra #1
+
+Successfully implemented `save responses if the user leaves or reloads the page`.
+
 ## Tech
 
 React JS | CSS3 | CSS-modules | Adaptive design
