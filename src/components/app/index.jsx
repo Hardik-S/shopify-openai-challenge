@@ -80,7 +80,7 @@ export const App = () => {
   const handleClearSearchResults = () => {
     changePopupSettings({
       isOpen: true,
-      message: 'Are you sure you want to clear search history?',
+      message: 'Are you sure you want to clear all prompts and responses?',
       action: 'Clear',
       onActionClick: handleConfirmClearSearchResults
     });
