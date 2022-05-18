@@ -1,0 +1,7 @@
+{
+  "extends": ["stylelint-config-standard", "stylelint-config-idiomatic-order"],
+  "rules": {
+    "number-leading-zero": "never",
+    "selector-class-pattern": "^[a-z][a-zA-Z0-9]+$|^ant-|^mz-"
+  }
+}

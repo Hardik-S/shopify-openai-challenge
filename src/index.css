@@ -1,0 +1,5 @@
+@import './vendor/normalize.css';
+@import './vendor/fonts.css';
+@import './shared/styles/globals.css';
+@import './shared/styles/palette.css';
+@import './shared/styles/vars.css';

@@ -1,0 +1,14 @@
+.root {
+  width: auto;
+  max-width: auto;
+  /* max-width: var(--page-content-max-width); */
+  flex-grow: 1;
+  margin: 0 auto;
+}
+
+@media (max-width: 500px) {
+  .root {
+    width: auto;
+    /* width: calc(100% - 38px); */
+  }
+}

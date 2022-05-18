@@ -1,0 +1,37 @@
+.root {
+  display: grid;
+  padding: 20px 30px;
+  background-color: var(--color-secondary-light);
+  border-radius: 10px;
+  gap: 30px;
+  grid-template-columns: min-content 1fr;
+}
+
+.heading {
+  margin: 0;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 20px;
+  font-weight: 100;
+  line-height: 1;
+  /* text-transform: lowercase; */
+}
+
+.text {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.25;
+  text-align: justify;
+  word-wrap: normal;
+  /* text-transform: lowercase; */
+}
+
+@media (max-width: 1024px) {
+  .root {
+    gap: 15px;
+    grid-template-columns: 1fr;
+  }
+
+  .text {
+    font-size: 16px;
+  }
+}

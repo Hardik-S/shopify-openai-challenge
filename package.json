@@ -1,0 +1,46 @@
+{
+  "name": "shopify-intern-challenge",
+  "version": "0.1.0",
+  "homepage": "https://naumchik-shopify-challenge.netlify.app/",
+  "private": true,
+  "description": "Shopify Intern Challenge Curious Curie Chat",
+  "author": {
+    "name": "Hardik Shrestha",
+    "email": "hshrest@uwo.ca",
+    "url": "https://hardik-s.github.io/"
+  },
+  "dependencies": {
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-native-web": "^0.17.7",
+    "react-scripts": "5.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "lint:js": "eslint src/**/*.{js,jsx} --fix",
+    "lint:css": "stylelint **/*.module.css --fix",
+    "all": "react-scripts start & react-scripts build"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "classnames": "2.3.1",
+    "eslint": "8.15.0",
+    "eslint-plugin-react": "7.29.4",
+    "husky": "4.3.8",
+    "stylelint": "14.8.2",
+    "stylelint-config-idiomatic-order": "8.1.0",
+    "stylelint-config-standard": "25.0.0"
+  }
+}

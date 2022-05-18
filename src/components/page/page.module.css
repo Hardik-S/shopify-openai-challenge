@@ -1,0 +1,15 @@
+.root {
+  display: flex;
+  min-width: var(--page-content-min-width);
+  min-height: 100vh;
+  flex-direction: column;
+  padding: 50px 0;
+  background: var(--color-primary-light);
+  color: var(--color-primary-dark);
+}
+
+@media (max-width: 500px) {
+  .root {
+    padding: 28px 0 50px;
+  }
+}

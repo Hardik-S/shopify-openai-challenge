@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "prompt": "This is a short mock prompt",
+    "response": "This is a short mock response"
+  },
+  {
+    "id": 2,
+    "prompt": "This is a very long mock prompt with some special characters \\><!!*&^%$%^&*(@)#$AVERYL)NGM)CKPR)MTPTTT",
+    "response": "This is a very long mock response with some special characters \\><!!*&^%$%^&*(@)#$AVERYL)NGM)CKRESP0NSE"
+  }
+]

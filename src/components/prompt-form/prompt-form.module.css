@@ -1,0 +1,44 @@
+.fieldset {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  border: 0;
+}
+
+.input {
+  width: 100%;
+  min-height: 160px;
+  padding: 10px;
+  border-color: var(--color-primary-dark-translucent);
+  background-color: inherit;
+  font-size: 16px;
+  outline: none;
+  resize: vertical;
+}
+
+.input:hover,
+.input:focus-visible {
+  border-color: var(--color-primary-dark);
+}
+
+.error {
+  min-height: 20px;
+  margin: 10px 0 0;
+  color: var(--color-accent);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.submitGroup {
+  margin-top: 20px;
+}
+
+@media (max-width: 500px) {
+  .error {
+    max-width: 280px;
+  }
+}
