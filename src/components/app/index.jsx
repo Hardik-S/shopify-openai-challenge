@@ -8,6 +8,11 @@ import { Footer } from '../footer';
 import { Popup } from '../popup';
 import { usePopup } from '../../hooks/usePopup';
 import openAiApi from '../../utils/openAiApi';
+import {
+  clearSavedSearches,
+  readSavedSearches,
+  writeSavedSearches
+} from './storage';
 
 import { promptFormErrorMessages } from '../../shared/constants/prompt-form-error-messages';
 import { DEFAULT_ERROR_MESSAGE } from '../../shared/constants/default-error-message';
@@ -19,11 +24,7 @@ export const App = () => {
   const [popupSettings, { changePopupSettings, closePopup }] = usePopup();
 
   useEffect(() => {
-    const localSavedSearches = localStorage.getItem('savedSearches');
-
-    if (localSavedSearches) {
-      setCards(JSON.parse(localSavedSearches));
-    }
+    setCards(readSavedSearches());
   }, []);
 
   const handlePrompt = (data) => {
@@ -34,25 +35,17 @@ export const App = () => {
     openAiApi
       .sendPrompt(data)
       .then(({ data }) => {
-        localStorage.setItem(
-          'savedSearches',
-          JSON.stringify([
-            {
-              id: data.id,
-              prompt: openAiRequest,
-              response: data.choices[0].text
-            },
-            ...cards
-          ])
-        );
-        setCards([
+        const nextCards = [
           {
             id: data.id,
             prompt: openAiRequest,
             response: data.choices[0].text
           },
           ...cards
-        ]);
+        ];
+
+        writeSavedSearches(nextCards);
+        setCards(nextCards);
       })
       .catch((err) => {
         switch (err) {
@@ -87,7 +80,7 @@ export const App = () => {
   };
 
   const handleConfirmClearSearchResults = () => {
-    localStorage.clear();
+    clearSavedSearches();
     setCards([]);
     closePopup();
   };
