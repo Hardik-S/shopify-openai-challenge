@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopify Prompt Studio (Modern)</title>
+    <meta
+      name="description"
+      content="A modernized prompt and response playground with local persistence and export."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Legacy Repo Rebuilder</p>
+          <h1>Shopify Prompt Studio</h1>
+          <p class="subtitle">Modernized prompt workspace with preserved behavior + UX upgrades.</p>
+        </div>
+      </header>
+
+      <section class="panel">
+        <form id="promptForm" class="prompt-form" autocomplete="off">
+          <label for="promptInput">Prompt</label>
+          <textarea
+            id="promptInput"
+            name="prompt"
+            rows="4"
+            maxlength="2000"
+            placeholder="Ask anything..."
+            required
+          ></textarea>
+          <div class="form-row">
+            <label for="apiKey">OpenAI API key</label>
+            <input
+              id="apiKey"
+              name="apiKey"
+              type="password"
+              placeholder="Optional for live call (kept in-memory only)"
+              autocomplete="off"
+            />
+          </div>
+          <label for="toneSelect">Response tone</label>
+          <select id="toneSelect">
+            <option value="helpful">Helpful</option>
+            <option value="concise">Concise</option>
+            <option value="creative">Creative</option>
+          </select>
+
+          <button id="submitBtn" type="submit">Submit prompt</button>
+        </form>
+
+        <p class="hint">
+          If no API key is provided, the app uses a deterministic offline fallback response so your
+          flow stays usable for demos and tests.
+        </p>
+      </section>
+
+      <section class="toolbar panel">
+        <div>
+          <label for="searchInput">Search history</label>
+          <input id="searchInput" type="search" placeholder="Search prompt or response..." />
+        </div>
+        <div class="inline-actions">
+          <button id="clearBtn" type="button">Clear history</button>
+          <button id="exportJsonBtn" type="button">Export JSON</button>
+          <button id="exportCsvBtn" type="button">Export CSV</button>
+          <button id="toggleThemeBtn" type="button">Toggle theme</button>
+        </div>
+      </section>
+
+      <section class="panel status-strip" id="statusStrip">
+        <span id="modePill" class="pill">No mode yet</span>
+        <span id="countPill" class="pill">0 prompts</span>
+        <span id="lastRun" class="pill">No responses yet</span>
+      </section>
+
+      <section class="panel">
+        <h2>Responses</h2>
+        <ul id="responseList" class="response-list"></ul>
+        <p id="emptyState">No prompts yet. Try your first prompt to get started.</p>
+      </section>
+
+      <p id="errorText" class="error" role="status" aria-live="polite"></p>
+
+      <dialog id="clearDialog">
+        <form method="dialog">
+          <p>Clear all prompts and responses?</p>
+          <menu>
+            <button id="cancelClear" type="button">Cancel</button>
+            <button id="confirmClear" value="confirm">Clear</button>
+          </menu>
+        </form>
+      </dialog>
+    </div>
+
+    <script src="app.js" type="module"></script>
+  </body>
+</html>
