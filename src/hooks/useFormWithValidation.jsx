@@ -1,5 +1,8 @@
 import { useState, useCallback } from 'react';
 
+import { hasNonWhitespaceContent }
+  from '../shared/helpers/has-non-whitespace-content';
+
 function useFormWithValidation() {
   const [values, setValues] = useState({});
   const [errors, setErrors] = useState({});
@@ -9,10 +12,15 @@ function useFormWithValidation() {
     const target = event.target;
     const name = target.name;
     const value = target.value;
+    const hasMeaningfulValue = hasNonWhitespaceContent(value);
 
     setValues({ ...values, [name]: value });
-    setErrors({ ...errors, [name]: target.validationMessage });
-    setIsValid(target.closest('form').checkValidity());
+    setErrors({
+      ...errors,
+      [name]: target.validationMessage
+        || (hasMeaningfulValue ? '' : 'Please enter a value.')
+    });
+    setIsValid(target.closest('form').checkValidity() && hasMeaningfulValue);
   };
 
   const resetForm = useCallback(
