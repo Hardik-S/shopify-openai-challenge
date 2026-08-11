@@ -16,6 +16,8 @@ import {
 
 import { promptFormErrorMessages } from '../../shared/constants/prompt-form-error-messages';
 import { DEFAULT_ERROR_MESSAGE } from '../../shared/constants/default-error-message';
+import { readOpenAiCompletion }
+  from '../../shared/helpers/read-open-ai-completion';
 
 export const App = () => {
   const [promptSubmitButtonText, setPromptSubmitButtonText]
@@ -35,13 +37,15 @@ export const App = () => {
     return openAiApi
       .sendPrompt(data)
       .then(({ data }) => {
+        const completion = readOpenAiCompletion(data);
+
         // Read the latest persisted list so concurrent responses do not
         // overwrite cards that resolved after this handler was created.
         const nextCards = [
           {
-            id: data.id,
+            id: completion.id,
             prompt: openAiRequest,
-            response: data.choices[0].text
+            response: completion.text
           },
           ...readSavedSearches()
         ];
