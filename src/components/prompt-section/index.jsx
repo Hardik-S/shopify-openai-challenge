@@ -18,7 +18,7 @@ export const PromptSection = (props) => {
 
     // Keep failed prompts available for correction or retry.
     Promise.resolve(submission)
-      .then(resetForm)
+      .then(() => resetForm())
       .catch(() => {});
   };
 
