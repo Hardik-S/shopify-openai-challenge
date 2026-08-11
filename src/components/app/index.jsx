@@ -35,13 +35,15 @@ export const App = () => {
     return openAiApi
       .sendPrompt(data)
       .then(({ data }) => {
+        // Read the latest persisted list so concurrent responses do not
+        // overwrite cards that resolved after this handler was created.
         const nextCards = [
           {
             id: data.id,
             prompt: openAiRequest,
             response: data.choices[0].text
           },
-          ...cards
+          ...readSavedSearches()
         ];
 
         writeSavedSearches(nextCards);
