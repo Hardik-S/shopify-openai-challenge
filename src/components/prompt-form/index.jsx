@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 
 import { Button } from '../ui/button';
 import styles from './prompt-form.module.css';
+import { isPromptSubmitDisabled }
+  from '../../shared/helpers/is-prompt-submit-disabled';
 
 export const PromptForm = (props) => {
   const { submitButtonText, onChange, onSubmit, values, errors, isValid }
@@ -23,7 +25,11 @@ export const PromptForm = (props) => {
           {errors['prompt'] && errors['prompt']}
         </span>
         <div className={styles.submitGroup}>
-          <Button type="submit" text={submitButtonText} disabled={!isValid}/>
+          <Button
+            type="submit"
+            text={submitButtonText}
+            disabled={isPromptSubmitDisabled({ isValid, submitButtonText })}
+          />
         </div>
       </fieldset>
     </form>
