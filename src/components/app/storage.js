@@ -1,5 +1,14 @@
 const SAVED_SEARCHES_KEY = 'savedSearches';
 
+const isSavedSearch = (value) => (
+  value !== null
+  && typeof value === 'object'
+  && !Array.isArray(value)
+  && typeof value.id === 'string'
+  && typeof value.prompt === 'string'
+  && typeof value.response === 'string'
+);
+
 export const readSavedSearches = () => {
   const savedSearches = localStorage.getItem(SAVED_SEARCHES_KEY);
 
@@ -10,7 +19,7 @@ export const readSavedSearches = () => {
   try {
     const parsedSearches = JSON.parse(savedSearches);
 
-    if (Array.isArray(parsedSearches)) {
+    if (Array.isArray(parsedSearches) && parsedSearches.every(isSavedSearch)) {
       return parsedSearches;
     }
   } catch (err) {
