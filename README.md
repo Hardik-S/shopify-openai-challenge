@@ -22,6 +22,18 @@ cd shopify-openai-challenge
 npm i
 ```
 
+Before starting the app, create a local `.env.local` file containing the
+OpenAI key used for the challenge:
+
+```bash
+REACT_APP_OPEN_AI_SECRET=your-openai-key
+```
+
+The key is intentionally read by the browser for this historical challenge,
+so `.env.local` is ignored and must never be committed. Do not deploy this
+client-side key pattern to a real production app; production code should send
+requests through a server-side endpoint that keeps the key private.
+
 In the project directory, you can run:
 
 `npm run go`
