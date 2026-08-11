@@ -32,7 +32,7 @@ export const App = () => {
 
     setPromptSubmitButtonText('Thinking...');
 
-    openAiApi
+    return openAiApi
       .sendPrompt(data)
       .then(({ data }) => {
         const nextCards = [
@@ -64,6 +64,8 @@ export const App = () => {
             message: DEFAULT_ERROR_MESSAGE
           });
         }
+
+        throw err;
       })
       .finally(() => {
         setPromptSubmitButtonText('Submit');

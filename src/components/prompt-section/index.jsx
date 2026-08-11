@@ -14,9 +14,12 @@ export const PromptSection = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onPrompt(values);
-    /* TODO: reset form on 200 response only */
-    resetForm();
+    const submission = onPrompt(values);
+
+    // Keep failed prompts available for correction or retry.
+    Promise.resolve(submission)
+      .then(resetForm)
+      .catch(() => {});
   };
 
   return (
