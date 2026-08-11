@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 
 import { Page } from '../page';
 import { Header } from '../header';
@@ -13,6 +13,7 @@ import {
   readSavedSearches,
   writeSavedSearches
 } from './storage';
+import { isCurrentPromptRequest } from './response-state';
 
 import { promptFormErrorMessages } from '../../shared/constants/prompt-form-error-messages';
 import { DEFAULT_ERROR_MESSAGE } from '../../shared/constants/default-error-message';
@@ -22,6 +23,7 @@ export const App = () => {
     = useState('Submit');
   const [cards, setCards] = useState([]);
   const [popupSettings, { changePopupSettings, closePopup }] = usePopup();
+  const clearGeneration = useRef(0);
 
   useEffect(() => {
     setCards(readSavedSearches());
@@ -29,12 +31,18 @@ export const App = () => {
 
   const handlePrompt = (data) => {
     const openAiRequest = data.prompt;
+    const requestGeneration = clearGeneration.current;
 
     setPromptSubmitButtonText('Thinking...');
 
     return openAiApi
       .sendPrompt(data)
       .then(({ data }) => {
+        // A response that began before the user cleared the list must not
+        // resurrect the deleted card when its network request completes.
+        if (!isCurrentPromptRequest(requestGeneration, clearGeneration.current)) {
+          return;
+        }
         // Read the latest persisted list so concurrent responses do not
         // overwrite cards that resolved after this handler was created.
         const nextCards = [
@@ -84,6 +92,7 @@ export const App = () => {
   };
 
   const handleConfirmClearSearchResults = () => {
+    clearGeneration.current += 1;
     clearSavedSearches();
     setCards([]);
     closePopup();
